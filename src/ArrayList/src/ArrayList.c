@@ -58,7 +58,14 @@ ArrayList *CreateArrayList(ARRAYLIST_LENGTH_DATATYPE size, ARRAYLIST_FREE_FUNCTI
     // Initialize ArrayList fields.
     arrayList->size = size;
     arrayList->len = 0;
-    arrayList->freeFunc = NULL; // Initialize freeFunc to NULL.
+    // Check if the given freeFunc is not Null if it is set it to the default free function.
+    if(freeFunc == NULL)
+    {
+        arrayList->freeFunc = free; // Initialize freeFunc to default free function.
+    }
+    else{
+        arrayList->freeFunc = freeFunc;
+    }
     return arrayList;
 }
 

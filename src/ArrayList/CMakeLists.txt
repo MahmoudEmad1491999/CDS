@@ -10,9 +10,13 @@ include_directories(${CMAKE_CURRENT_LIST_DIR}/inc/)
 # This is useful for reusing object files in multiple targets.
 add_library(ArrayList_Callout OBJECT ${CMAKE_CURRENT_LIST_DIR}/src/ArrayList_Callout.c)
 
+
 # Create a STATIC library for ArrayList.
 # STATIC libraries are compiled into a single archive file (.a or .lib) that can be linked into other targets.
 add_library(ArrayList STATIC ${CMAKE_CURRENT_LIST_DIR}/src/ArrayList.c)
+
+# Add Include dir as a forced included file to the list of included dirs when using ArrayList Target.
+target_include_directories(ArrayList PUBLIC ${CMAKE_CURRENT_LIST_DIR}/inc/)
 
 # Link the ArrayList_Callout OBJECT library to the ArrayList STATIC library.
 # This ensures that the object files from ArrayList_Callout are included in the final ArrayList library.
